@@ -13,7 +13,7 @@ import java.sql.DriverManager;
  *
  * @author capacacitaciones
  */
-public class Coneccion {
+public class Conexion {
     protected static Connection cnn;
     
     protected static void conectar(){

@@ -87,5 +87,4 @@ public class ClienteVo {
         this.estado = estado;
     }
     
-    
 }

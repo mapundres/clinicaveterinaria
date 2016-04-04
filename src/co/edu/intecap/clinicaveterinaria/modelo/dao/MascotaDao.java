@@ -7,6 +7,7 @@
 package co.edu.intecap.clinicaveterinaria.modelo.dao;
 
 import co.edu.intecap.clinicaveterinaria.modelo.coneccion.Conexion;
+import co.edu.intecap.clinicaveterinaria.modelo.vo.ClienteVo;
 import co.edu.intecap.clinicaveterinaria.modelo.vo.MascotaVo;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -31,7 +32,7 @@ public class MascotaDao extends Conexion implements GenericoDao<MascotaVo>{
          conectar();
          //crear consulta de insercion
          
-        String sql="insert into mascota(nombre,edad,estado,id_tipo,id_cliente) values(?,?,?,?,?)"; 
+        String sql="insert into mascota(nombre,edad,estado,id_tipo_mascota,id_cliente) values(?,?,?,?,?)"; 
         sentencia = cnn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
         // agregar parametros de insercion
         sentencia.setString(1, object.getNombre());
@@ -112,7 +113,7 @@ public class MascotaDao extends Conexion implements GenericoDao<MascotaVo>{
             
         }finally// despues del trycatch+tab se crea "finally" y el metodo "desconectar();"
         {
-            
+            desconectar();
         }
         return lista;
     }
@@ -152,9 +153,17 @@ public class MascotaDao extends Conexion implements GenericoDao<MascotaVo>{
             
         }finally// despues del trycatch+tab se crea "finally" y el metodo "desconectar();"
         {
-            
+            desconectar();
         }
         return obj;
+    }
+
+    public void insertar(ClienteVo clienteVo) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public void editar(ClienteVo clienteVo) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

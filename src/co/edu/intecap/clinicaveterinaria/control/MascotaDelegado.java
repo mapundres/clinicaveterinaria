@@ -10,7 +10,7 @@ import co.edu.intecap.clinicaveterinaria.modelo.dao.MascotaDao;
 import co.edu.intecap.clinicaveterinaria.modelo.vo.MascotaVo;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.JFrame;
+import javax.swing.JPanel;
 import javax.swing.JOptionPane;
 
 /**
@@ -19,10 +19,10 @@ import javax.swing.JOptionPane;
  */
 public class MascotaDelegado {
     //ATRIVUTOS DE CLASE QUE SON CONSTANTES(su valor como objeto no puede cambiar )
-    private final JFrame contenedor;
+    private final JPanel contenedor;
     private final MascotaDao mascotaDao;
 
-    public MascotaDelegado(JFrame contenedor) {
+    public MascotaDelegado(JPanel contenedor) {
         // las constantes se como final double pi =3.1416
         //ASIGNACION INICIAL DE LAS CONSTANTES
         this.contenedor = contenedor;

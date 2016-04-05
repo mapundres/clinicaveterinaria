@@ -3,76 +3,76 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package co.edu.intecap.clinicaveterinaria.control;
 
+import co.edu.intecap.clinicaveterinaria.modelo.dao.MedicoDao;
 import co.edu.intecap.clinicaveterinaria.modelo.dao.TipoMascotaDao;
+import co.edu.intecap.clinicaveterinaria.modelo.vo.MedicoVo;
 import co.edu.intecap.clinicaveterinaria.modelo.vo.TipoMascotaVo;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.JPanel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 /**
  *
- * @author Usuario
+ * @author capacacitaciones
  */
-public class TipoMascotaDelegado {
+public class MedicoDelegado {
     
-    
+        
      private final JPanel contenedor;
-    private final TipoMascotaDao tipomascotaDao;
+    private final MedicoDao medicoDao;
+    private MedicoVo MedicoVo;
+    private List<MedicoVo> listaMedico;
 
-    public TipoMascotaDelegado(JPanel contenedor) {
+    public MedicoDelegado(JPanel contenedor) {
         // las constantes se como final double pi =3.1416
         //ASIGNACION INICIAL DE LAS CONSTANTES
         this.contenedor = contenedor;
-        this.tipomascotaDao = new TipoMascotaDao();
+        this.medicoDao = new MedicoDao();
     }
 
-       public void insertarTipoMascota(TipoMascotaVo tipomascotaVo)
+       public void insertarMedico(MedicoVo medicoVo)
  {
      try {
-         this.tipomascotaDao.insertar(tipomascotaVo);
+         this.medicoDao.insertar(medicoVo);
      } catch (Exception e) {
          JOptionPane.showMessageDialog(contenedor, e.getMessage(), "Error en insersion", JOptionPane.ERROR_MESSAGE);
      }
  }
 
     ///////////////////////////////////////////
-    public void editarHistoria(TipoMascotaVo tipomascotaVo) {
+    public void editarHistoria(MedicoVo medicoVo) {
         try {
 
-            this.tipomascotaDao.editar(tipomascotaVo);
+            this.medicoDao.editar(medicoVo);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(contenedor, e.getMessage(), "Error en insersion", JOptionPane.ERROR_MESSAGE);
         }
     }
 
-    public List<TipoMascotaVo> consultarHistoria() {
-        List<TipoMascotaVo> listaTipoMascota;
+    public List<MedicoVo> consultarHistoria() {
+        List<MedicoVo> listaMedico;
         try {
-            listaTipoMascota = this.tipomascotaDao.consultar();
+            listaMedico = this.medicoDao.consultar();
         } catch (Exception e) {
-            listaTipoMascota = new ArrayList<>();
+            listaMedico = new ArrayList<>();
             JOptionPane.showMessageDialog(contenedor, e.getMessage(), "Error en insersion", JOptionPane.ERROR_MESSAGE);
         }
-        return listaTipoMascota;
+        return listaMedico;
     }
 
-    public TipoMascotaVo consultarHistoria(int id) {
-        TipoMascotaVo tipomascotaVo;
+    public MedicoVo consultarHistoria(int id) {
+        MedicoVo medicoVo;
         try {
-            tipomascotaVo = this.tipomascotaDao.consultar(id);
+            medicoVo = this.medicoDao.consultar(id);
         } catch (Exception e) {
-            tipomascotaVo  = new TipoMascotaVo();
+            medicoVo  = new MedicoVo();
             JOptionPane.showMessageDialog(contenedor, e.getMessage(), "Error en insersion", JOptionPane.ERROR_MESSAGE);
         }
-        return tipomascotaVo;
+        return medicoVo;
     }
-
-    public void registrarTipoMascota(TipoMascotaVo tipoMascotaVo) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
     
 }

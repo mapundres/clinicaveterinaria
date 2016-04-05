@@ -9,7 +9,7 @@ import co.edu.intecap.clinicaveterinaria.modelo.dao.ConsultaDao;
 import co.edu.intecap.clinicaveterinaria.modelo.vo.ConsultaVo;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.JFrame;
+import javax.swing.JPanel;
 import javax.swing.JOptionPane;
 
 /**
@@ -19,10 +19,10 @@ import javax.swing.JOptionPane;
 public class ConsultaDelegado {
     
     
-     private final JFrame contenedor;
+     private final JPanel contenedor;
     private final ConsultaDao consultaDao;
     
-     public ConsultaDelegado(JFrame contenedor) {
+     public ConsultaDelegado(JPanel contenedor) {
         // las constantes se como final double pi =3.1416
         //ASIGNACION INICIAL DE LAS CONSTANTES
         this.contenedor = contenedor;

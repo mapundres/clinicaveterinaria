@@ -17,9 +17,8 @@ import javax.swing.JOptionPane;
  * @author Usuario
  */
 public class TipoMascotaDelegado {
-    
-    
-     private final JPanel contenedor;
+
+    private final JPanel contenedor;
     private final TipoMascotaDao tipomascotaDao;
 
     public TipoMascotaDelegado(JPanel contenedor) {
@@ -29,26 +28,24 @@ public class TipoMascotaDelegado {
         this.tipomascotaDao = new TipoMascotaDao();
     }
 
-       public void insertarTipoMascota(TipoMascotaVo tipomascotaVo)
- {
-     try {
-         this.tipomascotaDao.insertar(tipomascotaVo);
-     } catch (Exception e) {
-         JOptionPane.showMessageDialog(contenedor, e.getMessage(), "Error en insersion", JOptionPane.ERROR_MESSAGE);
-     }
- }
+    public void insertarTipoMascota(TipoMascotaVo tipomascotaVo) {
+        try {
+            this.tipomascotaDao.insertar(tipomascotaVo);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(contenedor, e.getMessage(), "Error en insersion", JOptionPane.ERROR_MESSAGE);
+        }
+    }
 
     ///////////////////////////////////////////
-    public void editarHistoria(TipoMascotaVo tipomascotaVo) {
+    public void editarTipoMascota(TipoMascotaVo tipomascotaVo) {
         try {
-
             this.tipomascotaDao.editar(tipomascotaVo);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(contenedor, e.getMessage(), "Error en insersion", JOptionPane.ERROR_MESSAGE);
         }
     }
 
-    public List<TipoMascotaVo> consultarHistoria() {
+    public List<TipoMascotaVo> consultarTipoMascotas() {
         List<TipoMascotaVo> listaTipoMascota;
         try {
             listaTipoMascota = this.tipomascotaDao.consultar();
@@ -59,20 +56,15 @@ public class TipoMascotaDelegado {
         return listaTipoMascota;
     }
 
-    public TipoMascotaVo consultarHistoria(int id) {
+    public TipoMascotaVo consultarTipoMascota(int id) {
         TipoMascotaVo tipomascotaVo;
         try {
             tipomascotaVo = this.tipomascotaDao.consultar(id);
         } catch (Exception e) {
-            tipomascotaVo  = new TipoMascotaVo();
+            tipomascotaVo = new TipoMascotaVo();
             JOptionPane.showMessageDialog(contenedor, e.getMessage(), "Error en insersion", JOptionPane.ERROR_MESSAGE);
         }
         return tipomascotaVo;
     }
 
-    public void registrarTipoMascota(TipoMascotaVo tipoMascotaVo) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
-    
-}

@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package co.edu.intecap.clinicaveterinaria.modelo.dao;
 
 import co.edu.intecap.clinicaveterinaria.modelo.coneccion.Conexion;
@@ -20,74 +19,71 @@ import java.util.List;
  */
 public class TipoMascotaDao extends Conexion implements GenericoDao<TipoMascotaVo> {
 
-    @Override           
+    @Override
     public void insertar(TipoMascotaVo object) {
-        
+
         PreparedStatement sentencia = null;
         try {
-            
-            
-         conectar();
+
+            conectar();
          //crear consulta de insercion
-         
-        String sql="insert into tipo_mascota(nombre,estado) values(?,?)"; 
-        sentencia = cnn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-        // agregar parametros de insercion
-        sentencia.setString(1, object.getNombre());
-        sentencia.setBoolean(2,object.isEstado());
-        //ejecutar la insercion
-        sentencia.executeUpdate();
-        //obtener la llave de registro de la mascota
-        ResultSet rs = sentencia.getGeneratedKeys();
+
+            String sql = "insert into tipo_mascota(nombre,estado) values(?,?)";
+            sentencia = cnn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            // agregar parametros de insercion
+            sentencia.setString(1, object.getNombre());
+            sentencia.setBoolean(2, object.isEstado());
+            //ejecutar la insercion
+            sentencia.executeUpdate();
+            //obtener la llave de registro de la mascota
+            ResultSet rs = sentencia.getGeneratedKeys();
             if (rs.next()) {
-               object.setIdTipoMascota(rs.getInt(1));
+                object.setIdTipoMascota(rs.getInt(1));
             }
         } catch (Exception e) {
             e.printStackTrace(System.err);
-        }finally{
-         desconectar();
+        } finally {
+            desconectar();
         }
-        
+
     }
 
     //////////////////////////////////////////////////////////////
-    
     @Override
     public void editar(TipoMascotaVo object) {
         PreparedStatement sentencia;
         try {
             conectar();
             //crear string del sql de actualizacion
-            String sql="update mascota set id_tipo_mascota = ?,  nombre = ?, estado = ? , where id_tipo_mascota = ?";
-         sentencia = cnn.prepareStatement(sql);
-         sentencia.setInt(1, object.getIdTipoMascota());
-         sentencia.setString(2, object.getNombre());
-         sentencia.setBoolean(3,object.isEstado());
-         sentencia.setInt(4, object.getIdTipoMascota());
-         //ejecutar la actualizacion
-         sentencia.executeUpdate();
+            String sql = "update mascota set id_tipo_mascota = ?,  nombre = ?, estado = ? , where id_tipo_mascota = ?";
+            sentencia = cnn.prepareStatement(sql);
+            sentencia.setInt(1, object.getIdTipoMascota());
+            sentencia.setString(2, object.getNombre());
+            sentencia.setBoolean(3, object.isEstado());
+            sentencia.setInt(4, object.getIdTipoMascota());
+            //ejecutar la actualizacion
+            sentencia.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace(System.err);
-        }finally{
+        } finally {
             desconectar();
         }
     }
 
     //////////////////////////////////////////////////////////////
-    
     @Override
     public List<TipoMascotaVo> consultar() {
-     
+
         PreparedStatement sentencia;
         List<TipoMascotaVo> lista = new ArrayList<>();
         try {
             conectar();
-            String sql =" select * from tipo mascota";
-            sentencia= cnn.prepareStatement(sql);
+            String sql = " select * from tipo_mascota";
+            sentencia = cnn.prepareStatement(sql);
             //resulset recive las respuestas satisfactorias de la base de datos 
             // las ecepciones se pueden controlar con el trycatch
             //obtener los registros de la tabla.
-            ResultSet rs= sentencia.executeQuery();
+            ResultSet rs = sentencia.executeQuery();
             while (rs.next()) {
                 TipoMascotaVo tipomascota = new TipoMascotaVo();
                 //obtener el id de la mascota del cursor y asignarlo al atributo id mascota de un objeto de la clase MascotaVo
@@ -96,54 +92,51 @@ public class TipoMascotaDao extends Conexion implements GenericoDao<TipoMascotaV
                 tipomascota.setEstado(rs.getBoolean("estado"));
                 lista.add(tipomascota);
             }
-            
+
         } catch (Exception e) {
             e.printStackTrace(System.err);
-            
-        }finally// despues del trycatch+tab se crea "finally" y el metodo "desconectar();"
+
+        } finally// despues del trycatch+tab se crea "finally" y el metodo "desconectar();"
         {
             desconectar();
         }
         return lista;
-        
+
     }
 
     //////////////////////////////////////////////////////////////
-    
     @Override
     public TipoMascotaVo consultar(int id) {
-       
+
         PreparedStatement sentencia;
-       TipoMascotaVo obj = new TipoMascotaVo();
+        TipoMascotaVo obj = new TipoMascotaVo();
         try {
             conectar();
             //consulta de un registro de la tabla segun la llave
             //primaria
-            String sql =" select * from id_tipo_mascota where id_tipo_mascota= ?";
-            sentencia= cnn.prepareStatement(sql);
-            sentencia.setInt(1,id);
+            String sql = " select * from id_tipo_mascota where id_tipo_mascota= ?";
+            sentencia = cnn.prepareStatement(sql);
+            sentencia.setInt(1, id);
             //resulset recive las respuestas satisfactorias de la base de datos 
             // las ecepciones se pueden controlar con el trycatch
             //obtener los registros de la tabla.
-            ResultSet rs= sentencia.executeQuery();
+            ResultSet rs = sentencia.executeQuery();
             if (rs.next()) {
                 //obtener el id de la mascota del cursor y asignarlo al atributo id mascota de un objeto de la clase MascotaVo
                 obj.setIdTipoMascota(rs.getInt("id_tipo_mascota"));
                 obj.setNombre(rs.getString("nombre"));
-                obj.setEstado(rs.getBoolean("estado"));             
+                obj.setEstado(rs.getBoolean("estado"));
             }
-            
+
         } catch (Exception e) {
             e.printStackTrace(System.err);
-            
-        }finally// despues del trycatch+tab se crea "finally" y el metodo "desconectar();"
+
+        } finally// despues del trycatch+tab se crea "finally" y el metodo "desconectar();"
         {
             desconectar();
         }
         return obj;
-        
+
     }
 
-   
-    
 }

@@ -19,7 +19,7 @@ public class Conexion {
     protected static void conectar(){
         try {
         Class.forName("com.mysql.jdbc.Driver");    
-        cnn=DriverManager.getConnection("jdbc:mysql://192.168.7.199:3306/veterinaria", "root","");
+        cnn=DriverManager.getConnection("jdbc:mysql://192.168.7.200:3306/veterinaria", "root","");
         } catch (Exception e) {
             e.printStackTrace(System.err);// nos muestra que fue lo q fallo
         }

@@ -55,14 +55,14 @@ public class TipoMascotaDao extends Conexion implements GenericoDao<TipoMascotaV
         try {
             conectar();
             //crear string del sql de actualizacion
-            String sql = "update mascota set id_tipo_mascota = ?,  nombre = ?, estado = ? , where id_tipo_mascota = ?";
+            String sql = "update tipo_mascota set id_tipo_mascota = ?,  nombre = ?, estado = ?  where id_tipo_mascota = ?";
             sentencia = cnn.prepareStatement(sql);
             sentencia.setInt(1, object.getIdTipoMascota());
             sentencia.setString(2, object.getNombre());
             sentencia.setBoolean(3, object.isEstado());
             sentencia.setInt(4, object.getIdTipoMascota());
             //ejecutar la actualizacion
-            sentencia.executeUpdate();
+             sentencia.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace(System.err);
         } finally {
@@ -114,7 +114,7 @@ public class TipoMascotaDao extends Conexion implements GenericoDao<TipoMascotaV
             conectar();
             //consulta de un registro de la tabla segun la llave
             //primaria
-            String sql = " select * from id_tipo_mascota where id_tipo_mascota= ?";
+            String sql = " select * from tipo_mascota where id_tipo_mascota = ?";
             sentencia = cnn.prepareStatement(sql);
             sentencia.setInt(1, id);
             //resulset recive las respuestas satisfactorias de la base de datos 

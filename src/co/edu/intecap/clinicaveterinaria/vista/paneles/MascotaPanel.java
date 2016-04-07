@@ -3,20 +3,55 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package co.edu.intecap.clinicaveterinaria.vista.paneles;
+
+import co.edu.intecap.clinicaveterinaria.control.ClienteDelegado;
+import co.edu.intecap.clinicaveterinaria.control.TipoMascotaDelegado;
+import co.edu.intecap.clinicaveterinaria.modelo.vo.ClienteVo;
+import co.edu.intecap.clinicaveterinaria.modelo.vo.TipoMascotaVo;
+import java.util.List;
 
 /**
  *
  * @author capacacitaciones
  */
 public class MascotaPanel extends javax.swing.JPanel {
+   //lista que contiene los tipos dee mascotas existentes en la base de datos.
+
+    private List<TipoMascotaVo> listaTipoMascota;
+
+    //lista que contiene los clientes en la base de datos.
+    private List<ClienteVo> listaClientes;
 
     /**
      * Creates new form MascotaPanel
      */
     public MascotaPanel() {
         initComponents();
+        //cargar con datos la lista de tipo de mascota
+        this.listaTipoMascota = new TipoMascotaDelegado(this).consultarTipoMascotas();
+
+        //cargar con datos la lista de clientes
+        this.listaClientes = new ClienteDelegado(this).consultarClientes();
+        configurarCombos();
+    }
+
+    private void configurarCombos() {
+        cboTipoMascota.addItem("Sleccione un tipo de mascota");
+        cboCliente.addItem("Sleccione un cliente");
+        //se carga el combobox con la informacion de la lista consultada en la base de datos
+        //de tipos de mascota.
+        for (TipoMascotaVo tipoMascotaVo : listaTipoMascota) {
+            cboTipoMascota.addItem(tipoMascotaVo.getNombre());
+        }
+        for (ClienteVo clienteVo : listaClientes) {
+            cboCliente.addItem(clienteVo.getNombre());
+        }
+    }
+    private int obtenerIdTipoMascotaCombo(){
+        int idSeleccionado = cboTipoMascota.getSelectedIndex();
+        int idTipoMascota=listaTipoMascota.get(idSeleccionado-1).getIdTipoMascota();
+        return idTipoMascota;
     }
 
     /**
@@ -53,11 +88,7 @@ public class MascotaPanel extends javax.swing.JPanel {
 
         jLabel4.setText("Tipo de mascota:");
 
-        cboTipoMascota.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         jLabel5.setText("Cliente:");
-
-        cboCliente.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         tblMascota.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -157,4 +188,5 @@ public class MascotaPanel extends javax.swing.JPanel {
     private javax.swing.JSpinner txtEdad;
     private javax.swing.JTextField txtNombre;
     // End of variables declaration//GEN-END:variables
+
 }

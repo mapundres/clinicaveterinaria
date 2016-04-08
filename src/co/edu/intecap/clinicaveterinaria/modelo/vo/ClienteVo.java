@@ -6,6 +6,8 @@
 
 package co.edu.intecap.clinicaveterinaria.modelo.vo;
 
+import co.edu.intecap.clinicaveterinaria.vista.paneles.ClientePanel;
+
 /**
  *
  * @author capacacitaciones
@@ -16,6 +18,14 @@ public class ClienteVo {
     private String correo;
     private String telefono;
     private boolean estado;
+
+    public ClienteVo(ClientePanel aThis) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public ClienteVo() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
     /**
      * @return the idCliente
@@ -85,6 +95,14 @@ public class ClienteVo {
      */
     public void setEstado(boolean estado) {
         this.estado = estado;
+    }
+
+    public void insertarCliente(ClienteVo clienteVo) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public void getTelefono(String text) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }
